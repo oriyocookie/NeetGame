@@ -20,14 +20,18 @@ class CMain
 
  private:
   //sets the width and Height of the screen
-
+  float CameraX;
+  float CameraY;
   int ScreenWidth;
   int ScreenHeight;
 
   bool quit;
   //sprites that are pointer
-  CSprite* grass;
   Watashi* bob;
+
+  //environment
+
+  Environment* Woods;
   //uses the SDL library to set up things
   CSDL_Setup* csdl_setup;
 

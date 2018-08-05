@@ -1,12 +1,14 @@
 #include "header.h"
 
 
-Watashi::Watashi(CSDL_Setup* passedSDLSetup)
+Watashi::Watashi(CSDL_Setup* passedSDLSetup, float *passed_CameraX, float *passed_CameraY)
 {
+
   csdl_setup=passedSDLSetup;
+  CameraX=passed_CameraX;
+  CameraY=passed_CameraY;
 
-
-  bob = new CSprite(csdl_setup->GetRenderer(),"images/character/bob.png", 300,250, 80,80);
+  bob = new CSprite(csdl_setup->GetRenderer(),"images/character/bob.png", 200,200, 64,64,CameraX,CameraY);
   bob -> setUpAnimation(0);
   moveLeft=false;
   moveRight=false;
@@ -27,6 +29,14 @@ void Watashi:: Draw()
 }
 void Watashi::Update()
 {
+  UpdateAnimation();
+
+  UpdateControls();
+
+}
+
+void Watashi::UpdateAnimation()
+{
 
 
   bob->walkAnimation(0,0,0,250);
@@ -37,7 +47,6 @@ void Watashi::Update()
             {
             case SDLK_a:
               bob -> setUpAnimation(1);
-              
               moveLeft=true;
               break;
             case SDLK_s:
@@ -85,23 +94,32 @@ void Watashi::Update()
       if (moveRight)
         {
           
+          *CameraX=*CameraX-1.0f;
           bob -> setX(bob->getX() +1);
         }
       else if (moveLeft)
         {
           
+          *CameraX=*CameraX+1.0f;
           bob->setX(bob-> getX() - 1);
         }
       else if (moveDown)
         {
-          
+          *CameraY=*CameraY-1.0f;
           bob -> setY(bob->getY() +1);
         }
       else if (moveUp)
         {
+          *CameraY=*CameraY+1.0f;
           bob -> setY(bob->getY() -1);
         }
       timeTracker=SDL_GetTicks();
       }
+
+}
+
+void Watashi::UpdateControls()
+{
+
 
 }

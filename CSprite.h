@@ -8,7 +8,7 @@
 class CSprite
 {
  public:
-  CSprite(SDL_Renderer* passed_renderer, std::string FilePath, int x, int y, int w, int h);
+  CSprite(SDL_Renderer* passed_renderer, std::string FilePath, int x, int y, int w, int h, float *CameraX, float *CameraY);
   ~CSprite(void);
 
   void Draw();
@@ -26,6 +26,10 @@ class CSprite
   void walkAnimation(int BeginFrame, int EndFrame, int Row, int Speed);
   void setUpAnimation(int passed_amountFrame);
  private:
+
+  SDL_Rect Camera;
+  float *CameraX;
+  float *CameraY;
 
 
   SDL_Texture* image;
@@ -48,14 +52,18 @@ class CSprite
 class Watashi
 {
  public:
-  Watashi(CSDL_Setup* passedSDLSetup);
+  Watashi(CSDL_Setup* passedSDLSetup, float *CameraX, float *CameraY);
   ~Watashi();
 
   void Update();
   void Draw();
-
+  void UpdateAnimation();
+  void UpdateControls();
  private:
 
+
+  float *CameraX;
+  float *CameraY;
   CSprite* bob;
 
  CSDL_Setup* csdl_setup;
@@ -67,3 +75,27 @@ class Watashi
 
  int timeTracker;
 };
+
+
+class Environment
+{
+ public:
+  Environment(int ScreenWidth, int ScreenHeight, float *CameraX, float *CameraY, CSDL_Setup* csdl_setup);
+  ~Environment();
+  void DrawBack();
+  void DrawFront();
+ private:
+
+  CSprite* grass[4][7];
+};
+
+/*class Objects
+{
+ public:
+  Objects();
+  ~Objects();
+ private:
+  CSprite *treeTop;
+  CSprite *treeTrunk;
+
+}*/

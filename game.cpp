@@ -3,18 +3,19 @@
 
 CMain::CMain(int passed_ScreenWidth, int passed_ScreenHeight)
 {
+  CameraX=0.0f;
+  CameraY=0.0f;
+
   ScreenWidth = passed_ScreenWidth;
   ScreenHeight = passed_ScreenHeight;
   quit = false;
   csdl_setup = new CSDL_Setup(&quit, ScreenWidth, ScreenHeight);
-
-  grass = new CSprite(csdl_setup->GetRenderer(),"images/background/grass.bmp", 0, 0, ScreenWidth, ScreenHeight);
-  bob = new Watashi(csdl_setup); 
+  bob = new Watashi(csdl_setup,&CameraX,&CameraY);
   // moveRight=false;
   // moveLeft=false;
   // moveUp=false;
   // moveDown=false;
-
+  Woods= new Environment(ScreenWidth,ScreenHeight,&CameraX,&CameraY, csdl_setup);
   // timeTracker=SDL_GetTicks();
 }
  
@@ -22,7 +23,7 @@ CMain::CMain(int passed_ScreenWidth, int passed_ScreenHeight)
 CMain::~CMain(void)
 {
   delete csdl_setup;
-  delete grass;
+
   delete bob;
 }
  
@@ -32,12 +33,11 @@ void CMain::GameLoop(void)
     {
       csdl_setup->Begin();
 
-      grass->Draw();
+      Woods->DrawBack();
+    bob -> Draw();
+    bob -> Update();
+    Woods -> DrawFront();
 
-
-      bob -> Draw();
-      bob -> Update();
-
-      csdl_setup->End();
-    }
+    csdl_setup->End();
+}
 }

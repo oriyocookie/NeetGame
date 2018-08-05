@@ -4,7 +4,7 @@
 int main (int argc, char* argv[])
 {
 
-  CMain* runGame=new CMain(600,500);
+  CMain* runGame=new CMain(640,510);
   runGame-> GameLoop();
   delete runGame;
   return 0;
