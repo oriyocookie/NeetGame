@@ -47,47 +47,6 @@ class CSprite
 };
 
 
-//Watashi
-
-class Watashi
-{
- public:
-  Watashi(CSDL_Setup* passedSDLSetup, float *CameraX, float *CameraY);
-  ~Watashi();
-
-  void Update();
-  void Draw();
-  void UpdateAnimation();
-  void UpdateControls();
- private:
-
-
-  float *CameraX;
-  float *CameraY;
-  CSprite* bob;
-
- CSDL_Setup* csdl_setup;
-
- bool  moveRight;
- bool  moveLeft;
- bool  moveUp;
- bool  moveDown;
-
- int timeTracker;
-};
-
-
-class Environment
-{
- public:
-  Environment(int ScreenWidth, int ScreenHeight, float *CameraX, float *CameraY, CSDL_Setup* csdl_setup);
-  ~Environment();
-  void DrawBack();
-  void DrawFront();
- private:
-
-  CSprite* grass[4][7];
-};
 
 /*class Objects
 {

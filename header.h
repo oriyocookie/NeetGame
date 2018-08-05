@@ -9,6 +9,10 @@
 #include <math.h>
 #include "CSDL_Setup.h"
 #include "CSprite.h"
+#include "Watashi.h"
+#include "Environment.h"
+
+
 
 //main class that initiates most thing
 class CMain
