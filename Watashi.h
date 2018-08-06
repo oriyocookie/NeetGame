@@ -7,7 +7,7 @@
 class Watashi
 {
  public:
-  Watashi(CSDL_Setup* passedSDLSetup, float *CameraX, float *CameraY);
+  Watashi(CSDL_Setup* passedSDLSetup, float *CameraX, float *CameraY, int *BobPosX, int *BobPosY);
   ~Watashi();
 
   void Update();
@@ -15,7 +15,8 @@ class Watashi
   void UpdateAnimation();
   void UpdateControls();
  private:
-
+  int *BobPosX;
+  int *BobPosY;
 
   float *CameraX;
   float *CameraY;

@@ -1,14 +1,16 @@
 #include "header.h"
 
 
-Watashi::Watashi(CSDL_Setup* passedSDLSetup, float *passed_CameraX, float *passed_CameraY)
+Watashi::Watashi(CSDL_Setup* passedSDLSetup, float *passed_CameraX, float *passed_CameraY,int* passed_BobPosX,int* passed_BobPosY)
 {
 
   csdl_setup=passedSDLSetup;
   CameraX=passed_CameraX;
   CameraY=passed_CameraY;
+  BobPosX=passed_BobPosX;
+  BobPosY=passed_BobPosY;
 
-  bob = new CSprite(csdl_setup->GetRenderer(),"images/character/bob.png", 200,200, 64,64,CameraX,CameraY);
+  bob = new CSprite(csdl_setup->GetRenderer(),"images/character/bob.png", *BobPosX,*BobPosY, 64,64,CameraX,CameraY);
   bob -> setUpAnimation(0);
   moveLeft=false;
   moveRight=false;
@@ -93,23 +95,28 @@ void Watashi::UpdateAnimation()
       SDL_GetTicks();
       if (moveRight)
         {
-          
+
+          *BobPosX=*BobPosX+1;
           *CameraX=*CameraX-1.0f;
           bob -> setX(bob->getX() +1);
         }
       else if (moveLeft)
         {
-          
+          *BobPosX=*BobPosX-1;
           *CameraX=*CameraX+1.0f;
           bob->setX(bob-> getX() - 1);
         }
       else if (moveDown)
         {
+
+          *BobPosY=*BobPosY+1;
           *CameraY=*CameraY-1.0f;
           bob -> setY(bob->getY() +1);
         }
       else if (moveUp)
         {
+
+          *BobPosY=*BobPosY-1;
           *CameraY=*CameraY+1.0f;
           bob -> setY(bob->getY() -1);
         }

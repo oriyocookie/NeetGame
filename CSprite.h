@@ -49,14 +49,3 @@ class CSprite
 };
 
 #endif
-
-/*class Objects
-{
- public:
-  Objects();
-  ~Objects();
- private:
-  CSprite *treeTop;
-  CSprite *treeTrunk;
-
-}*/
