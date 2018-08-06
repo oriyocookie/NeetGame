@@ -1,3 +1,6 @@
+#ifndef WATASHI_H
+#define WATASHI_H
+
 //Watashi.h
 #include <iostream>
 
@@ -27,3 +30,5 @@ class Watashi
 
   int timeTracker;
 };
+
+#endif

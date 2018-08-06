@@ -1,6 +1,6 @@
 //header things that are needed so the includes are nnot used multiple times
-#ifndef NEET_GAME
-#define NEET_GAME
+#ifndef MAIN_H
+#define MAIN_H
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

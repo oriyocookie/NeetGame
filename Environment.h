@@ -1,3 +1,5 @@
+#ifndef ENVIRONMENT_H
+#define ENVIRONMENT_H
 
 #include <iostream>
 //environment
@@ -12,3 +14,6 @@ class Environment
 
   CSprite* grass[4][7];
 };
+
+
+#endif

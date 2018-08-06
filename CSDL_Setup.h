@@ -1,3 +1,6 @@
+#ifndef CSDL_SETUP
+#define CSDL_SETUP
+
 
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -23,3 +26,5 @@ class CSDL_Setup
   SDL_Renderer* renderer;
   SDL_Event* mainEvent;
  };
+
+#endif

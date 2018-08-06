@@ -1,3 +1,5 @@
+#ifndef SPRITE_H
+#define SPRITE_H
 
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -46,7 +48,7 @@ class CSprite
 
 };
 
-
+#endif
 
 /*class Objects
 {
