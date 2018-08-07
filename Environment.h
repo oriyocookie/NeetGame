@@ -5,7 +5,9 @@
 #include "header.h"
 #include "Objects.h"
 #include <vector>
-
+#include <fstream>
+#include <string>
+#include <sstream>
 //environment
 class Environment
 {
@@ -16,7 +18,18 @@ class Environment
   void DrawFront();
 
   void Update();
+  void LoadFromFile();
+  void saveToFile();
+  enum ModeType
+  {
+    gamePlay,
+    levelCreation
+  };
+
  private:
+
+  int Mode;
+
   int *BobPosX;
   int *BobPosY;
   CSDL_Setup* csdl_setup;
@@ -24,7 +37,8 @@ class Environment
   float* CameraY;
   bool OnePressed;
   SDL_Event* place;
-  CSprite* grass[4][7];
+  CSprite* grass[2][2];
+
   std::vector<Objects*> fruit;
 };
 

@@ -6,8 +6,8 @@ CMain::CMain(int passed_ScreenWidth, int passed_ScreenHeight)
   CameraX=0.0f;
   CameraY=0.0f;
   //
-  BobPosX=200;
-  BobPosY=200;
+  BobPosX=256;
+  BobPosY=256;
   //
   ScreenWidth = passed_ScreenWidth;
   ScreenHeight = passed_ScreenHeight;

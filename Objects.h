@@ -12,12 +12,14 @@ class Objects
 
   void DrawFruit();
   void DrawBook();
+
+  int GetX();
+  int GetY();
  private:
+  int x;
+  int y;
 
-
-  CSprite *Fruit;
-  CSprite *Book;
-
+  CSprite *Fruit, *Book;
 };
 
 

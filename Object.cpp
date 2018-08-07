@@ -1,10 +1,12 @@
 #include "header.h"
 #include <iostream>
 
-Objects::Objects(int x, int y,float *CameraX, float *CameraY, CSDL_Setup *csdl_setup)
+Objects::Objects(int x_passed, int y_passed,float *CameraX, float *CameraY, CSDL_Setup *csdl_setup)
 {
+  x=x_passed;
+  y=y_passed;
 
-  Fruit = new CSprite(csdl_setup->GetRenderer(),"images/Objects/split/tile002.png", x-50,y-100, 32,32,CameraX,CameraY);
+  Fruit = new CSprite(csdl_setup->GetRenderer(),"images/Objects/split/tile002.png", x,y, 32,32,CameraX,CameraY);
 
   Book = new CSprite(csdl_setup->GetRenderer(),"images/Objects/split/poop.png", x-100,y-50, 32,32,CameraX,CameraY);
 
@@ -23,4 +25,12 @@ void Objects::DrawFruit()
 void Objects::DrawBook()
 {
   Book -> Draw();
+}
+int Objects:: GetX()
+{
+  return x;
+}
+int Objects:: GetY()
+{
+  return y;
 }
