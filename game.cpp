@@ -12,14 +12,9 @@ CMain::CMain(int passed_ScreenWidth, int passed_ScreenHeight)
   ScreenWidth = passed_ScreenWidth;
   ScreenHeight = passed_ScreenHeight;
   quit = false;
-  csdl_setup = new CSDL_Setup(&quit, ScreenWidth, ScreenHeight);
-  bob = new Watashi(csdl_setup,&CameraX,&CameraY,&BobPosX,&BobPosY);
-  // moveRight=false;
-  // moveLeft=false;
-  // moveUp=false;
-  // moveDown=false;
-  Woods= new Environment(ScreenWidth,ScreenHeight,&CameraX,&CameraY, csdl_setup,&BobPosX,&BobPosY);
-  // timeTracker=SDL_GetTicks();
+  csdl_setup = new CSDL_Setup(&quit, ScreenWidth, ScreenHeight); //create sprites and everything
+  bob = new Watashi(csdl_setup,&CameraX,&CameraY,&BobPosX,&BobPosY); //creates the main character
+  Woods= new Environment(ScreenWidth,ScreenHeight,&CameraX,&CameraY, csdl_setup,&BobPosX,&BobPosY); //creates environment using passed values
 }
  
  
@@ -34,14 +29,14 @@ void CMain::GameLoop(void)
 {
   while (!quit && csdl_setup->GetMainEvent()->type != SDL_QUIT)
     {
-      csdl_setup->Begin();
+      csdl_setup->Begin(); //starts renderer
 
-    Woods->DrawBack();
-    bob -> Draw();
-    bob -> Update();
-    Woods->Update();
-    Woods -> DrawFront();
+      Woods->DrawBack(); //draws back of woods
+      bob -> Draw(); //draws the main character
+      bob -> Update(); //updates him 
+      Woods->Update(); //updates the environment
+      Woods -> DrawFront(); //draws the front part of the woods
 
-    csdl_setup->End();
+      csdl_setup->End(); //ends the renderer
 }
 }

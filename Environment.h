@@ -30,11 +30,9 @@ class Environment
 
   int Mode;
 
-  int *BobPosX;
-  int *BobPosY;
+  int *BobPosX,*BobPosY;
   CSDL_Setup* csdl_setup;
-  float* CameraX;
-  float* CameraY;
+  float* CameraX, *CameraY;
   bool OnePressed;
   SDL_Event* place;
   CSprite* grass[2][2];

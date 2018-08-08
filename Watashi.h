@@ -15,21 +15,17 @@ class Watashi
   void UpdateAnimation();
   void UpdateControls();
  private:
-  int *BobPosX;
-  int *BobPosY;
 
-  float *CameraX;
-  float *CameraY;
+  int *BobPosX, *BobPosY;
+  int timeTracker;
+
+  float *CameraX,*CameraY;
   CSprite* bob;
 
   CSDL_Setup* csdl_setup;
 
-  bool  moveRight;
-  bool  moveLeft;
-  bool  moveUp;
-  bool  moveDown;
+  bool  moveRight, moveLeft, moveUp, moveDown;
 
-  int timeTracker;
 };
 
 #endif

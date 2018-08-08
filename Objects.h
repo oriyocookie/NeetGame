@@ -16,8 +16,7 @@ class Objects
   int GetX();
   int GetY();
  private:
-  int x;
-  int y;
+  int x,y;
 
   CSprite *Fruit, *Book;
 };

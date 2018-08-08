@@ -30,19 +30,14 @@ class CSprite
  private:
 
   SDL_Rect Camera;
-  float *CameraX;
-  float *CameraY;
+  float *CameraX, *CameraY;
 
 
-  SDL_Texture* image;
-  SDL_Rect rect;
-  SDL_Rect crop;
-  int img_width;
-  int img_height;
+  SDL_Texture* image; //image texture
+  SDL_Rect rect, crop; //x,y,w,h values for the image and for cropping the image
+  int img_width, img_height; //image size 
 
-  int CurrentFrame;
-  int animationDelay;
-  int amountFrame;
+  int CurrentFrame, animationDelay, amountFrame; //functions for walking
 
   SDL_Renderer* renderer;
 

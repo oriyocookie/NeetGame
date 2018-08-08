@@ -22,28 +22,25 @@ class CMain
  public:
   CMain(int passed_ScreenWidth, int passed_ScreenHeight);
   ~CMain(void);
-  void GameLoop();
+  void GameLoop(); //main game loop
 
  private:
   //sets the width and Height of the screen
-  float CameraX;
-  float CameraY;
-  int ScreenWidth;
-  int ScreenHeight;
+  float CameraX, CameraY;
+  int ScreenWidth, ScreenHeight;
 
-  bool quit;
-  //sprites that are pointer
-  Watashi* bob;
+  bool quit; //checks if window was quit
+
+  Watashi* bob; // main character pointer
 
   //environment
 
-  Environment* Woods;
+  Environment* Woods; //creates the map
   //uses the SDL library to set up things
-  CSDL_Setup* csdl_setup;
+  CSDL_Setup* csdl_setup; //sets up the sdl textures
 
   //
-  int BobPosX;
-  int BobPosY;
+  int BobPosX, BobPosY;
   //
 
 };

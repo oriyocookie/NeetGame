@@ -12,19 +12,19 @@
 class CSDL_Setup
 {
  public:
-  CSDL_Setup(bool* quit, int ScreenWidth, int ScreenHeight);
-  ~CSDL_Setup(void);
+  CSDL_Setup(bool* quit, int ScreenWidth, int ScreenHeight); //sets up the CSDL
+  ~CSDL_Setup(void); 
 
-  SDL_Renderer* GetRenderer();
-  SDL_Event* GetMainEvent();
+  SDL_Renderer* GetRenderer(); //gets the renderer
+  SDL_Event* GetMainEvent(); //gets event like key presses
 
   void Begin();
   void End();
  private:
 
-  SDL_Window* window;
-  SDL_Renderer* renderer;
-  SDL_Event* mainEvent;
+  SDL_Window* window;  //the window
+  SDL_Renderer* renderer; //graphics
+  SDL_Event* mainEvent; //events
  };
 
 #endif

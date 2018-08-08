@@ -4,29 +4,24 @@
 
 Environment:: Environment(int ScreenWidth, int ScreenHeight, float *passed_CameraX, float *passed_CameraY, CSDL_Setup* passed_csdl_setup, int *passed_BobPosX, int *passed_BobPosY)
 {
-  csdl_setup=passed_csdl_setup;
-  CameraX=passed_CameraX;
+  csdl_setup=passed_csdl_setup; //sets up the csdl with the passed values
+  CameraX=passed_CameraX; //gets camera values, however this is not being used right now
   CameraY=passed_CameraY;
-  BobPosX=passed_BobPosX;
+  BobPosX=passed_BobPosX; //gets the value of the main character's position
   BobPosY=passed_BobPosY;
-  for (int i=0; i<2; i++)
+  for (int i=0; i<2; i++) //for loop that prints the grass background
     {
       for (int j=0;j<2;j++)
         {
           grass[i][j] = new CSprite(csdl_setup->GetRenderer(),"images/background/grass.bmp", ScreenWidth*i, ScreenHeight*j, ScreenWidth, ScreenHeight,CameraX,CameraY);
         }
     }
-  Mode=levelCreation;
-  LoadFromFile();
+  Mode=levelCreation; //the mode that the game is in
+  LoadFromFile();  //loads from the file to create map at the start
 
-  OnePressed=false;
-  place=csdl_setup->GetMainEvent();
+  OnePressed=false; //makes sure the key is pressed once when held
+  place=csdl_setup->GetMainEvent(); //places the object in the map
 
-  // for (int i=0; i <10; i++)
-  //   {
-  //     fruit.push_back(new Objects(300+(50*i),300,CameraX,CameraY,csdl_setup));
-  // // fruit= new Objects(300,300,CameraX,CameraY,csdl_setup);
-  //   }
 }
 
 Environment::~Environment()
@@ -40,7 +35,7 @@ Environment::~Environment()
         }
     }
 
-  for (std::vector<Objects*>::iterator i=fruit.begin();i !=fruit.end();++i)
+  for (std::vector<Objects*>::iterator i=fruit.begin();i !=fruit.end();++i) //deletes all fruit objects
     {
       delete (*i);
     }
@@ -50,29 +45,25 @@ Environment::~Environment()
 void Environment::DrawBack()
 {
 
-  for (int i=0; i<2; i++)
+  for (int i=0; i<2; i++) //draws grass at the back
     {
       for (int j=0;j<2;j++)
         {
           grass[i][j] -> Draw();
         }
     }
-  // for (std::vector<Objects*>::iterator i=fruit.begin();i !=fruit.end();++i)
-  //   {
-  //     (*i) -> DrawFruit();
-  //   }
 }
 void Environment::DrawFront()
 {
 
-  for (std::vector<Objects*>::iterator i=fruit.begin();i !=fruit.end();++i)
+  for (std::vector<Objects*>::iterator i=fruit.begin();i !=fruit.end();++i) //draws at the front
     {
       (*i) -> DrawBook();
     }
 }
 void Environment::Update()
 {
-  if (Mode==levelCreation)
+  if (Mode==levelCreation) //if mode creation you can place objects on the map
   {
     //place
   if (csdl_setup->GetMainEvent()->type==SDL_KEYDOWN)
@@ -80,7 +71,7 @@ void Environment::Update()
       if(!OnePressed && place-> key.keysym.sym == SDLK_p)
         {
 
-          fruit.push_back(new Objects(*BobPosX+120,*BobPosY+75,CameraX,CameraY,csdl_setup));
+          fruit.push_back(new Objects(*BobPosX+120,*BobPosY+75,CameraX,CameraY,csdl_setup)); //pushes fruit in the stack
           OnePressed=true;
 
         }
@@ -95,9 +86,9 @@ void Environment::Update()
   //save
   if (csdl_setup->GetMainEvent()->type==SDL_KEYDOWN)
     {
-      if(!OnePressed && place-> key.keysym.sym == SDLK_F11)
+      if(!OnePressed && place-> key.keysym.sym == SDLK_F11) //if f11 is pressed saves to a file
         {
-          saveToFile();
+          saveToFile(); //saves to file
           std::cout << "saved" << std::endl;
           OnePressed=true;
 
@@ -141,7 +132,7 @@ void Environment::Update()
 }
 void Environment::saveToFile()
 {
-  std::ofstream LoadedFile;
+  std::ofstream LoadedFile; //writes to a text file
   LoadedFile.open("maps/level01.txt");
   LoadedFile <<"___Begin Level___" <<std::endl;
       for (std::vector<Objects*>::iterator i=fruit.begin();i !=fruit.end();++i)
@@ -155,7 +146,7 @@ void Environment::saveToFile()
 
 void Environment::LoadFromFile()
 {
-  std::ifstream LoadedFile ("maps/level01.txt");
+  std::ifstream LoadedFile ("maps/level01.txt"); //reads from the file
 
   std::string Line;
 
@@ -182,7 +173,6 @@ void Environment::LoadFromFile()
             {
               if (CurrentType==TypeObj)
                 {
-                  std::cout<< Line << std::endl;
                   std::istringstream iss(Line);
                   int tempX=0;
                   int tempY=0;
@@ -191,7 +181,6 @@ void Environment::LoadFromFile()
                     {
                       std::string word;
                       iss >> word;
-                      std::cout << word << std::endl;
                       if (previousWord == "x:")
                         {
                           tempX=atoi (word.c_str());
@@ -199,8 +188,6 @@ void Environment::LoadFromFile()
                       if (previousWord == "y:")
                         {
                           tempY=atoi (word.c_str());
-                          std::cout << "X is: " << tempX << std::endl;
-                          std::cout << "Y is: " << tempY << std::endl;
 
                           fruit.push_back(new Objects(tempX,tempY,CameraX,CameraY,csdl_setup));
 
@@ -209,7 +196,6 @@ void Environment::LoadFromFile()
                     }
                 }
             }
-          // std:: cout <<Line <<std:: endl;
         }
     }
   else
