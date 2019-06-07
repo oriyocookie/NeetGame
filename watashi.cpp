@@ -32,15 +32,10 @@ void Watashi:: Draw()
 void Watashi::Update()
 {
   UpdateAnimation();
-
-  UpdateControls();
-
 }
 
 void Watashi::UpdateAnimation()
 {
-
-
   bob->walkAnimation(0,0,0,250);
       switch (csdl_setup -> GetMainEvent()->type)
         {
@@ -91,7 +86,8 @@ void Watashi::UpdateAnimation()
         default:
           break;
         }
-      if (timeTracker+5 < SDL_GetTicks()){
+      if (timeTracker+5 < SDL_GetTicks())
+        {
       SDL_GetTicks();
       if (moveRight)
         {
@@ -125,8 +121,3 @@ void Watashi::UpdateAnimation()
 
 }
 
-void Watashi::UpdateControls()
-{
-
-
-}

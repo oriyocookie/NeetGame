@@ -13,7 +13,6 @@ class Watashi
   void Update();
   void Draw();
   void UpdateAnimation();
-  void UpdateControls();
  private:
 
   int *BobPosX, *BobPosY;

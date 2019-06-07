@@ -15,7 +15,6 @@
 #include "Environment.h"
 #include "Objects.h"
 
-
 //main class that initiates most thing
 class CMain
 {

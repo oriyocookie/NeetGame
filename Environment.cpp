@@ -13,7 +13,7 @@ Environment:: Environment(int ScreenWidth, int ScreenHeight, float *passed_Camer
     {
       for (int j=0;j<2;j++)
         {
-          grass[i][j] = new CSprite(csdl_setup->GetRenderer(),"images/background/grass.bmp", ScreenWidth*i, ScreenHeight*j, ScreenWidth, ScreenHeight,CameraX,CameraY);
+          grass[i][j] = new CSprite(csdl_setup->GetRenderer(),"images/background/grass.png", ScreenWidth*i, ScreenHeight*j, ScreenWidth, ScreenHeight,CameraX,CameraY);
         }
     }
   Mode=levelCreation; //the mode that the game is in
@@ -83,7 +83,37 @@ void Environment::Update()
           OnePressed=false;
         }
     }
+  //pops the tree out
+
+
+  if (csdl_setup->GetMainEvent()->type==SDL_KEYDOWN)
+    {
+      if(!OnePressed && place-> key.keysym.sym == SDLK_u)
+        {
+          if(fruit.size()>0)
+            {
+              int count=0;
+              for (std::vector<Objects*>::iterator i=fruit.begin();i !=fruit.end();++i) //draws at the front
+                {
+                  if(count ==fruit.size())
+                  delete (*i);
+                  count ++;
+                }
+          fruit.pop_back(); //deletes fruit in the stack
+            }
+          OnePressed=true;
+
+        }
+    }
+  if (csdl_setup->GetMainEvent()->type==SDL_KEYUP)
+    {
+      if(OnePressed && place-> key.keysym.sym == SDLK_u)
+        {
+          OnePressed=false;
+        }
+    }
   //save
+
   if (csdl_setup->GetMainEvent()->type==SDL_KEYDOWN)
     {
       if(!OnePressed && place-> key.keysym.sym == SDLK_F11) //if f11 is pressed saves to a file

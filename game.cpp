@@ -16,15 +16,12 @@ CMain::CMain(int passed_ScreenWidth, int passed_ScreenHeight)
   bob = new Watashi(csdl_setup,&CameraX,&CameraY,&BobPosX,&BobPosY); //creates the main character
   Woods= new Environment(ScreenWidth,ScreenHeight,&CameraX,&CameraY, csdl_setup,&BobPosX,&BobPosY); //creates environment using passed values
 }
- 
- 
 CMain::~CMain(void)
 {
   delete csdl_setup;
   delete Woods;
   delete bob;
 }
- 
 void CMain::GameLoop(void)
 {
   while (!quit && csdl_setup->GetMainEvent()->type != SDL_QUIT)
